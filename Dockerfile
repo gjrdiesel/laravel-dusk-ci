@@ -1,0 +1,21 @@
+FROM misterio92/ci-php-node
+
+ENV COMPOSER_NO_INTERACTION=1
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+RUN apt-get update
+
+# Install dusk requirements
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add
+RUN echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+
+RUN apt-get update
+
+RUN apt-get install -y libnss3-dev
+RUN apt-get install -y google-chrome-stable
+
+RUN google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 --no-sandbox http://localhost &
+
+# Install Xdebug
+RUN pecl install xdebug
+RUN echo 'zend_extension=/usr/lib/php/20190902/xdebug.so' >> /etc/php/7.4/cli/php.ini
