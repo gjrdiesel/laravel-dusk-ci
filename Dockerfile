@@ -19,3 +19,9 @@ RUN google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 -
 # Install Xdebug
 RUN pecl install xdebug
 RUN echo 'zend_extension=/usr/lib/php/20190902/xdebug.so' >> /etc/php/7.4/cli/php.ini
+
+# Use node 12
+SHELL ["/bin/bash", "--login", "-i", "-c"]
+RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+RUN source /root/.bashrc && nvm install 12
+SHELL ["/bin/bash", "--login", "-c"]
