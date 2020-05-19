@@ -1,3 +1,10 @@
+language: ruby
+
+services:
+  - docker
+
+before_install:
+  - docker build -t gjrdiesel/laravel-dusk-ci .
 deploy:
   provider: script
   script: bash docker_push
