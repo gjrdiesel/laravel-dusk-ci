@@ -15,7 +15,10 @@ RUN apt-get install -y libnss3-dev
 RUN apt-get install -y google-chrome-stable
 
 # For creating multiple databases if needed in test pipeline
-RUN apt-get install -y mysql-client
+RUN apt-get install -y mysql-client && mysql-server && vim
+
+# Install nginx for a reverse https proxy
+RUN apt-get install -y nginx
 
 RUN google-chrome --version
 
@@ -30,3 +33,7 @@ SHELL ["/bin/bash", "--login", "-i", "-c"]
 RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 RUN source /root/.bashrc && nvm install 12
 SHELL ["/bin/bash", "--login", "-c"]
+
+# Install reverse proxy for https to http
+RUN npm install -g local-ssl-proxy
+RUN local-ssl-proxy --source 443 --target 80 &
