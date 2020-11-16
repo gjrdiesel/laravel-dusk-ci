@@ -14,12 +14,6 @@ RUN apt-get update
 RUN apt-get install -y libnss3-dev
 RUN apt-get install -y google-chrome-stable
 
-# For creating multiple databases if needed in test pipeline
-RUN apt-get install -y mysql-client && mysql-server && vim
-
-# Install nginx for a reverse https proxy
-RUN apt-get install -y nginx
-
 RUN google-chrome --version
 
 RUN google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 --no-sandbox http://localhost &
