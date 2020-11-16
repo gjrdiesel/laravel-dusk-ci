@@ -30,4 +30,3 @@ SHELL ["/bin/bash", "--login", "-c"]
 
 # Install reverse proxy for https to http
 RUN npm install -g local-ssl-proxy
-RUN local-ssl-proxy --source 443 --target 80 &
