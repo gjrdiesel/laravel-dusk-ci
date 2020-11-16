@@ -11,8 +11,7 @@ RUN echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' |
 
 RUN apt-get update
 
-RUN apt-get install -y libnss3-dev
-RUN apt-get install -y google-chrome-stable
+RUN apt-get install -y libnss3-dev google-chrome-stable mysql-client
 
 RUN google-chrome --version
 
