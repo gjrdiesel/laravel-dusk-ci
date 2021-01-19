@@ -1,4 +1,4 @@
-FROM misterio92/ci-php-node
+FROM misterio92/ci-php-node:4.0
 
 ENV COMPOSER_NO_INTERACTION=1
 ENV COMPOSER_ALLOW_SUPERUSER=1
